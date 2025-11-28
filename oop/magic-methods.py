@@ -152,6 +152,7 @@ class Counter:
   def __init__(self, limit):
     self.limit = limit
     self.current = 0
+  
 
   def __iter__(self):
     self.current = 0
@@ -208,4 +209,97 @@ people sometimes use functools.total_ordering to auto-generate the rest from __e
 
 ''' Tier 2 '''
 
+# arithmetic operator magic methods
 
+# __add__() --> addition operation on two object  of same type, 
+# only implement when two objects can be added
+
+
+class Vector:
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+
+  def __add__(self, other):
+    return Vector(self.x + other.x, self.y + other.y)
+  
+  def __repr__(self):
+    return f"Vector({self.x}, {self.y})"
+  
+v1 = Vector(5, 8)
+v2 = Vector(6, 9)
+# print(v1 + v2)
+
+# similarly other arithmetic operators
+#  __sub__()
+#  __mul__()
+#  __truediv__() --> for divison(/)
+#  __floordev__() --> only gives quoitent(//)
+#  __mod__() --> only gives remainder modulus(%)
+# __pow__() --> rais to power(**)
+
+# __contains_() --> in operator
+# check whether an element belongs to a container
+# if not applied python tries iteration internally but using __conatins__ is faster.
+
+
+class Bag:
+    def __init__(self, items):
+        self.items = list(items)  # ensure it's a list
+
+    def __bool__(self):
+        return len(self.items) > 0  # True if not empty
+
+    def __add__(self, other):
+        return Bag(self.items + other.items)  # merge two bags
+
+    def __contains__(self, item):
+        return item in self.items
+
+
+
+  
+  
+mybag = Bag(["apple", "banana"])
+# print("apple" in mybag)
+# print("mango" in mybag)
+
+
+# __call__() --> make your object behave like function by making it callable.
+# it is usefull in making  function like objects with state
+
+class kounter:
+  def __init__(self):
+    self.count = 0
+
+  def __call__(self):
+    self.count += 1
+    print("called", self.count, "times")
+
+k = kounter()
+# k()
+# k()
+
+
+
+
+# __enter__ and __exit__ --> Context manager(with)
+
+# A context manager in Python is a special object designed to set up and clean up resources automatically.
+# used heavily in file handling, DB concetions, locks, mutexes, transactions
+
+class ManagedResource:
+  def __enter__(self):
+    print("resource acquired")
+    return "Data"
+
+  def __exit__(self, exc_type, exc_value, traceback): # always takes three positional arguments learn about more.
+    print("Resource released")
+
+with ManagedResource() as data:
+  # print(data)
+
+
+
+  
+  
