@@ -182,4 +182,23 @@ print(squares)
 
 
 
+'''
+# *args --> takes extra positioinal arguments,
+# when we do not know how many values will be passed and collects them into a tuple.
 
+def add(*args):
+  total = 0
+  for i in args:
+    total += i
+  return total
+
+print(add(1,2,5,3,46,8))
+
+# **kwargs --> takes extra keyword arguments,
+# when we do not know how many values will be passed and it collects them in a tuple
+
+def details(**kwargs):
+  print(kwargs)
+
+details(name="Alice", age=45)
+'''

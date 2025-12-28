@@ -299,7 +299,10 @@ class ManagedResource:
 with ManagedResource() as data:
   # print(data)
 
+# __new__() --> creates the object and always called internally when a new instance is created
+# --> init method is called after it 
+# --> it can be overridden and if u do that it must accepts arguments ohterwise typeerror
+# --> it may seems to be a instance method abut it is an static method, it recieves a class not self,
+# --> it is responsivle for allocating memory and returning a new object.
 
 
-  
-  
